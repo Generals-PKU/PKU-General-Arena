@@ -1,14 +1,14 @@
 from fastapi import FastAPI, WebSocket, WebSocketDisconnect
 from fastapi.staticfiles import StaticFiles
 from fastapi.responses import FileResponse
-from engine.game import GeneralsGame
+from engine.GameManager import GeneralsGame
 import json
 import os
-import asyncio
+import asyncio # 处理异步操作，实现并发
 
 app = FastAPI()
 
-# 存储活跃游戏
+# 存储活跃游戏，后续会更新到数据库中
 active_games = {}
 game_connections = {} # 记录每个game_id的所有websocket连接
 
@@ -18,7 +18,7 @@ app.mount("/static", StaticFiles(directory="static"), name="static")
 '''把 static 目录下的前端页面、样式、JS 文件作为静态资源对外提供
 前端可以通过 /static/ 路径访问这些文件。'''
 
-@app.get("/")
+@app.get("/") # 当路由为'/'（首次执行时）运行该修饰下的所有函数
 async def read_root():
     return FileResponse(os.path.join('static', 'index.html'))
 
