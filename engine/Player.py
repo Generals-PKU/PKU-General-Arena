@@ -13,6 +13,9 @@ class Player:
         self.general_position = None
         self.action_queue = None # 任务队列
         self.map_size = None
+        self.live = True # 是否存活
+
+
 
 
 

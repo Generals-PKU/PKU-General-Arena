@@ -1,7 +1,7 @@
 from fastapi import FastAPI, WebSocket, WebSocketDisconnect
 from fastapi.staticfiles import StaticFiles
 from fastapi.responses import FileResponse
-from engine.GameManager import GeneralsGame
+from engine.GameManager import GeneralsGame # 引入游戏管理类, 修改文件名时要看这里的import路径
 import json
 import os
 import asyncio # 处理异步操作，实现并发
